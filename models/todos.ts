@@ -1,3 +1,8 @@
+export interface UpdatedTodo {
+  updatedTask: string
+  id: number
+}
+
 export interface NewTodo {
   task: string
   priority: string

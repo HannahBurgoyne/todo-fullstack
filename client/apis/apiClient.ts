@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { NewTodo, Todo } from '../../models/todos'
+import { NewTodo, Todo, UpdatedTodo } from '../../models/todos'
 
 const baseUrl = '/api/v1/todos/'
 
@@ -19,8 +19,8 @@ export async function fetchTodos() {
 
 // UPDATE
 
-export async function updateTodo(updatedTodo: object, id: number) {
-  await request.patch(`${baseUrl}${id}`).send(updatedTodo)
+export async function updateTodo({ updatedTask, id }: UpdatedTodo) {
+  await request.patch(`${baseUrl}${id}`).send(updatedTask)
 }
 
 // DELETE

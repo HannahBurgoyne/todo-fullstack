@@ -1,8 +1,27 @@
-import { useQuery } from '@tanstack/react-query'
-import { fetchTodos } from '../apis/apiClient'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { fetchTodos, updateTodo, deleteTodo } from '../apis/apiClient'
+import { UpdatedTodo } from '../../models/todos'
 
 function AllTodos() {
   const { data } = useQuery(['todos'], fetchTodos)
+  const queryClient = useQueryClient()
+
+  const updateMutation = useMutation({
+    mutationFn: (updatedTask: UpdatedTodo) => updateTodo(updatedTask),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['todos'])
+    },
+  })
+
+  const deleteMutation
+
+  const completedMutation
+
+  function handleDeleteClick() {}
+
+  function handleUpdateClick() {}
+
+  function handleCompletedToggle() {}
 
   return (
     <ul className="todo-list">
