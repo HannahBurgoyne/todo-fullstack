@@ -13,9 +13,12 @@ function AllTodos() {
     },
   })
 
-  const deleteMutation
-
-  const completedMutation
+  const deleteMutation = useMutation({
+    mutationFn: (id: number) => deleteTodo(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['todos'])
+    },
+  })
 
   function handleDeleteClick() {}
 

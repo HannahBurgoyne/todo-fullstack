@@ -5,10 +5,11 @@ export interface UpdatedTodo {
 
 export interface NewTodo {
   task: string
-  priority: string
-  completed: boolean
 }
 
-export interface Todo extends NewTodo {
+export interface Todo {
   id: number
+  task: string
+  primary: number
+  completed: boolean
 }
