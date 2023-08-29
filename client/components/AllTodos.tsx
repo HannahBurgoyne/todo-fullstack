@@ -23,7 +23,13 @@ function AllTodos() {
     },
   })
 
-  function handleDeleteClick() {}
+  function handleDeleteClick(
+    e: React.MouseEvent<HTMLButtonElement>,
+    id: number
+  ) {
+    e.preventDefault()
+    deleteMutation.mutate(id)
+  }
 
   function handleUpdateClick() {}
 
@@ -40,7 +46,8 @@ function AllTodos() {
             />
             <label>{todo.task}</label>
             <button
-              /* add onclick to delete here */ className="destroy"
+              onClick={(e) => handleDeleteClick(e, todo.id)}
+              className="destroy"
             ></button>
           </div>
         </li>

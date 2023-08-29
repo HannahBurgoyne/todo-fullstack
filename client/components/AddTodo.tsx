@@ -6,14 +6,14 @@ import { NewTodo } from '../../models/todos'
 function AddTodo() {
   const queryClient = useQueryClient()
 
-  const addMutation = useMutation({
-    mutationFn: (addedTask: NewTodo) => addTodo(addedTask),
-    onSuccess: () => {
-      queryClient.invalidateQueries(['todos'])
-    },
-  })
+  // const addMutation = useMutation({
+  //   mutationFn: (addedTask: NewTodo) => addTodo(addedTask),
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries(['todos'])
+  //   },
+  // })
 
-  function handleAddClick() {}
+  // function handleAddClick() {}
 
   return (
     <>
