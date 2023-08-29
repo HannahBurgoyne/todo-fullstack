@@ -1,8 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { fetchTodos, updateTodo, deleteTodo } from '../apis/apiClient'
 import { UpdatedTodo } from '../../models/todos'
+import { useState } from 'react'
 
 function AllTodos() {
+  const [editing, setEditing] = useState(false)
+  const [completed, setCompleted] = useState(false)
   const { data } = useQuery(['todos'], fetchTodos)
   const queryClient = useQueryClient()
 
