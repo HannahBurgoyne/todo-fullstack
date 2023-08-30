@@ -22,11 +22,9 @@ function AddTodo() {
     e.preventDefault()
 
     const newTask = e.target.value
-    console.log(newTask)
 
     addMutation.mutate(newTask)
     setForm('')
-    console.log('enter pressed in add')
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
