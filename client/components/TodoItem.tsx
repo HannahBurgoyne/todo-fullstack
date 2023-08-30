@@ -39,7 +39,6 @@ function TodoItem({ id, task }: Props) {
 
   function handleStartEditingDblClick() {
     setEditing(true)
-    console.log('editing set to true')
   }
 
   function handleUpdateEnter(e: React.KeyboardEvent<HTMLInputElement>) {
@@ -52,17 +51,15 @@ function TodoItem({ id, task }: Props) {
     console.log('enter pressed')
   }
 
-  function handleCompletedToggle() {}
-
   return (
     <li
       onDoubleClick={handleStartEditingDblClick}
-      className={`${editing ? 'editing' : ''}`}
+      className={`${editing ? 'editing' : ''} ${completed ? 'completed' : ''}`}
       key={id} /*toggle completed class*/
     >
       <div className="view">
         <input
-          onClick={() => setCompleted(true)}
+          onClick={() => setCompleted(!completed)}
           className="toggle"
           type="checkbox" /*toggle checked and not checked state*/
         />
