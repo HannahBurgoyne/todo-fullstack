@@ -3,9 +3,10 @@ import { fetchTodos, updateTodo, deleteTodo } from '../apis/apiClient'
 import { UpdatedTodo } from '../../models/todos'
 import { useState } from 'react'
 
-function AllTodos() {
+function AllTodos(task) {
   const [editing, setEditing] = useState(false)
   const [completed, setCompleted] = useState(false)
+  const [text, setText] = useState(task)
   const { data } = useQuery(['todos'], fetchTodos)
   const queryClient = useQueryClient()
 
@@ -36,7 +37,14 @@ function AllTodos() {
     console.log('editing set to true')
   }
 
-  function handleUpdateEnter() {}
+  function handleUpdateEnter(e: React.KeyboardEvent<HTMLInputElement>) {
+    e.preventDefault()
+
+    const updatedTask = updateMutation.mutate({ id, task })
+    setEditing(false)
+    setText(task)
+    console.log('enter pressed')
+  }
 
   function handleCompletedToggle() {}
 
@@ -59,7 +67,17 @@ function AllTodos() {
               className="destroy"
             ></button>
           </div>
-          <input className="edit" value={todo.task}></input>
+          <input
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleUpdateEnter()
+              }
+            }}
+            className="edit"
+            type="text"
+            value={todo.task}
+            onChange={(e) => setText(e.target.value)}
+          ></input>
         </li>
       ))}
     </ul>
