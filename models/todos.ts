@@ -1,5 +1,5 @@
 export interface UpdatedTodo {
-  updatedTask: string
+  task: string
   id: number
 }
 
