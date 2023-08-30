@@ -50,6 +50,10 @@ function TodoItem({ id, task }: Props) {
     console.log('enter pressed')
   }
 
+  function handleCompletedClick() {
+    setCompleted(!completed)
+  }
+
   return (
     <li
       onDoubleClick={handleStartEditingDblClick}
@@ -58,7 +62,7 @@ function TodoItem({ id, task }: Props) {
     >
       <div className="view">
         <input
-          onClick={() => setCompleted(!completed)}
+          onClick={handleCompletedClick}
           className="toggle"
           type="checkbox"
         />
