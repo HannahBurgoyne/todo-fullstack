@@ -6,7 +6,7 @@ const baseUrl = '/api/v1/todos/'
 // CREATE
 
 export async function addTodo(newTodo: NewTodo) {
-  await request.post(baseUrl).send(newTodo)
+  await request.post(baseUrl).send({ task: newTodo })
 }
 
 // READ

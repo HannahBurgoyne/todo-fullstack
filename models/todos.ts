@@ -4,7 +4,7 @@ export interface UpdatedTodo {
 }
 
 export interface NewTodo {
-  task: string
+  newTask: string
 }
 
 export interface Todo {

@@ -43,6 +43,7 @@ function TodoItem({ id, task }: Props) {
     e.preventDefault()
 
     const updatedTask = e.target.value
+    console.log(updatedTask)
 
     updateMutation.mutate({ id, updatedTask })
     setEditing(false)
