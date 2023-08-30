@@ -1,5 +1,5 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { fetchTodos, updateTodo, deleteTodo } from '../apis/apiClient'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { updateTodo, deleteTodo } from '../apis/apiClient'
 import { UpdatedTodo } from '../../models/todos'
 import { useState } from 'react'
 
@@ -11,8 +11,6 @@ interface Props {
 function TodoItem({ id, task }: Props) {
   const [editing, setEditing] = useState(false)
   const [completed, setCompleted] = useState(false)
-  const [todo, setTodo] = useState(task)
-  const { data } = useQuery(['todos'], fetchTodos)
   const queryClient = useQueryClient()
 
   const updateMutation = useMutation({
@@ -55,13 +53,13 @@ function TodoItem({ id, task }: Props) {
     <li
       onDoubleClick={handleStartEditingDblClick}
       className={`${editing ? 'editing' : ''} ${completed ? 'completed' : ''}`}
-      key={id} /*toggle completed class*/
+      key={id}
     >
       <div className="view">
         <input
           onClick={() => setCompleted(!completed)}
           className="toggle"
-          type="checkbox" /*toggle checked and not checked state*/
+          type="checkbox"
         />
         <label>{task}</label>
         <button
