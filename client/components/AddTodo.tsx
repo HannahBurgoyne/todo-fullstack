@@ -5,7 +5,6 @@ import { useState } from 'react'
 
 // eslint-disable-next-line no-unused-vars
 function AddTodo() {
-  const [eraseValue, setEraseValue] = useState(false)
   const [form, setForm] = useState('')
   const queryClient = useQueryClient()
 

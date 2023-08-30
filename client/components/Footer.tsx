@@ -1,3 +1,9 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import ShowAllLink from './ShowAllLink'
+import ShowActiveLink from './ShowActiveLink'
+import ShowCompletedLink from './ShowCompletedLink'
+
 function Footer() {
   return (
     <>
@@ -5,17 +11,9 @@ function Footer() {
         <strong>0</strong> item left
       </span>
       <ul className="filters">
-        <li>
-          <a className="selected" href="#/">
-            All
-          </a>
-        </li>
-        <li>
-          <a href="#/active">Active</a>
-        </li>
-        <li>
-          <a href="#/completed">Completed</a>
-        </li>
+        <ShowAllLink />
+        <ShowActiveLink />
+        <ShowCompletedLink />
       </ul>
       <button className="clear-completed">Clear completed</button>
     </>
