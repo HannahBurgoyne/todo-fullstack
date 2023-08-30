@@ -16,7 +16,7 @@ function TodoItem({ id, task }: Props) {
   const queryClient = useQueryClient()
 
   const updateMutation = useMutation({
-    mutationFn: (updatedTask: UpdatedTodo) => updateTodo(updatedTask),
+    mutationFn: (task: UpdatedTodo) => updateTodo(task),
     onSuccess: () => {
       queryClient.invalidateQueries(['todos'])
     },
@@ -45,9 +45,10 @@ function TodoItem({ id, task }: Props) {
   function handleUpdateEnter(e: React.KeyboardEvent<HTMLInputElement>) {
     e.preventDefault()
 
-    const updatedTask = updateMutation.mutate({ id, task })
+    const updatedTask = e.target.value
+
+    updateMutation.mutate({ id, updatedTask })
     setEditing(false)
-    setTodo(task)
     console.log('enter pressed')
   }
 
@@ -61,6 +62,7 @@ function TodoItem({ id, task }: Props) {
     >
       <div className="view">
         <input
+          onClick={() => setCompleted(true)}
           className="toggle"
           type="checkbox" /*toggle checked and not checked state*/
         />
@@ -78,8 +80,8 @@ function TodoItem({ id, task }: Props) {
         }}
         className="edit"
         type="text"
-        value={task}
-        onChange={(e) => setTodo(e.target.value)}
+        name="task"
+        placeholder={task}
       ></input>
     </li>
   )

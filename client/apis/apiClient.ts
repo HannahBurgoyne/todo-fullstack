@@ -20,7 +20,7 @@ export async function fetchTodos() {
 // UPDATE
 
 export async function updateTodo({ updatedTask, id }: UpdatedTodo) {
-  await request.patch(`${baseUrl}${id}`).send(updatedTask)
+  await request.patch(`${baseUrl}${id}`).send({ task: updatedTask })
 }
 
 // DELETE

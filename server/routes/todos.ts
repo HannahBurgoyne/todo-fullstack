@@ -33,6 +33,8 @@ router.patch('/:id', async (req, res) => {
   try {
     const id = Number(req.params.id)
     const updatedTodo = req.body
+    console.log('server', id)
+    console.log('server', updatedTodo)
     await updateTodo(updatedTodo, id)
     res.sendStatus(200)
   } catch (error) {
