@@ -45,7 +45,7 @@ function AllTodos() {
       {data?.map((todo) => (
         <li
           onDoubleClick={handleStartEditingDblClick}
-          className={`${editing ? 'editing' : 'view'}`}
+          className={`${editing ? 'editing' : ''}`}
           key={todo.id} /*toggle completed class*/
         >
           <div className="view">
@@ -59,6 +59,7 @@ function AllTodos() {
               className="destroy"
             ></button>
           </div>
+          <input className="edit" value={todo.task}></input>
         </li>
       ))}
     </ul>
