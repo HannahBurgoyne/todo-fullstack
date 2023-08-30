@@ -31,14 +31,23 @@ function AllTodos() {
     deleteMutation.mutate(id)
   }
 
-  function handleUpdateClick() {}
+  function handleStartEditingDblClick() {
+    setEditing(true)
+    console.log('editing set to true')
+  }
+
+  function handleUpdateEnter() {}
 
   function handleCompletedToggle() {}
 
   return (
     <ul className="todo-list">
       {data?.map((todo) => (
-        <li key={todo.id} /*toggle completed class*/>
+        <li
+          onDoubleClick={handleStartEditingDblClick}
+          className={`${editing ? 'editing' : 'view'}`}
+          key={todo.id} /*toggle completed class*/
+        >
           <div className="view">
             <input
               className="toggle"
