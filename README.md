@@ -7,7 +7,7 @@ This is a Dev Academy Aotearoa project which I was challenged to finish and depl
 - React
 - ReactQuery
 - TypeScript
-- CSS
+- SaSS
 - Knex
 - SQLite3
 - Express
