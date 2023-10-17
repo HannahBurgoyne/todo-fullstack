@@ -1,8 +1,15 @@
 import * as Path from 'node:path'
 import * as URL from 'node:url'
+import dotenv from 'dotenv'
 
 const __filename = URL.fileURLToPath(import.meta.url)
 const __dirname = Path.dirname(__filename)
+
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config()
+} else {
+  dotenv.config({ path: Path.join(__dirname, '../../.env') })
+}
 
 export default {
   development: {
@@ -16,31 +23,15 @@ export default {
     },
   },
 
-  test: {
-    client: 'sqlite3',
+  production: {
+    client: 'pg',
     useNullAsDefault: true,
     connection: {
-      filename: ':memory:',
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false },
     },
     migrations: {
       directory: Path.join(__dirname, 'migrations'),
-    },
-    seeds: {
-      directory: Path.join(__dirname, 'seeds'),
-    },
-    pool: {
-      afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
-    },
-  },
-
-  production: {
-    client: 'sqlite3',
-    useNullAsDefault: true,
-    connection: {
-      filename: '/app/storage/dev.sqlite3',
-    },
-    pool: {
-      afterCreate: (conn, cb) => conn.run('PRAGMA foreign_keys = ON', cb),
     },
   },
 }
