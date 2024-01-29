@@ -10,6 +10,6 @@ export interface NewTodo {
 export interface Todo {
   id: number
   task: string
-  primary: number
+  priority: number
   completed: boolean
 }
